@@ -28,8 +28,11 @@
         <label for="sellingprice" class="block text-lg font-medium text-gray-700">SELLING PRICE:</label>
         <input type="text" id="sellingprice" name="sellingprice" required class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-600">
 
-        <button type="submit" class="w-full py-3 bg-green-600 text-white font-semibold rounded-md shadow hover:bg-green-700 transition duration-300">
-          Add Item
+        <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+            </svg>
+            Add Item
         </button>
       </form>
     </div>

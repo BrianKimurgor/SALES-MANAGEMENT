@@ -5,7 +5,6 @@ $conn = getDBConnection();    // Get the database connection
 $error_message = ""; 
 
 $sql = "SELECT id, branchcode, branchname, branch_description FROM branches";
-
 $result = $conn->query($sql);
 
 if (!$result) {
@@ -15,14 +14,12 @@ if (!$result) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SALES MANAGEMENT SYSTEM</title>
-    <script src="https://cdn.tailwindcss.com"></script> <!-- Include Tailwind CSS -->
+    <title>Branches Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="bg-gray-100">
     <?php include 'includes/header.php'; ?>
 
@@ -30,29 +27,38 @@ if (!$result) {
         <?php include 'includes/sidebar.php'; ?>
 
         <!-- Main Content -->
-        <div class="content ml-64 p-8">
-            <!-- Branch Table -->
-            <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-                <table class="min-w-full table-auto border-collapse">
-                    <thead class="bg-gray-200">
+        <div class="flex-1 p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800">Branches Management</h2>
+                <a href="branch.php" class="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                    </svg>
+                    Add New Branch
+                </a>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-4 py-2 border-b text-left text-lg font-semibold">BRANCH ID</th>
-                            <th class="px-4 py-2 border-b text-left text-lg font-semibold">BRANCH CODE</th>
-                            <th class="px-4 py-2 border-b text-left text-lg font-semibold">BRANCH NAME</th>
-                            <th class="px-4 py-2 border-b text-left text-lg font-semibold">BRANCH DESCRIPTION</th>
-                            <th class="px-4 py-2 border-b text-left text-lg font-semibold">ACTION</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Branch ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Branch Code</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Branch Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="bg-white divide-y divide-gray-200">
                         <?php
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                echo "<tr class='hover:bg-gray-100'>";
-                                echo "<td class='px-4 py-2 border-b'>" . $row['id'] . "</td>";
-                                echo "<td class='px-4 py-2 border-b'>" . $row['branchcode'] . "</td>";
-                                echo "<td class='px-4 py-2 border-b'>" . $row['branchname'] . "</td>";
-                                echo "<td class='px-4 py-2 border-b'>" . $row['branch_description'] . "</td>";
-                                echo "<td class='px-4 py-2 border-b space-x-2'>
+                                echo "<tr class='hover:bg-gray-50'>";
+                                echo "<td class='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>" . $row['id'] . "</td>";
+                                echo "<td class='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>" . $row['branchcode'] . "</td>";
+                                echo "<td class='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>" . $row['branchname'] . "</td>";
+                                echo "<td class='px-6 py-4 text-sm text-gray-900'>" . $row['branch_description'] . "</td>";
+                                echo "<td class='px-6 py-4 whitespace-nowrap text-sm space-x-2'>
                                         <button onclick='updateBranch(" . $row['id'] . ")' 
                                                 class='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200'>
                                             <svg class='w-4 h-4 mr-1' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -71,7 +77,7 @@ if (!$result) {
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='5' class='text-center py-2'>No records found.</td></tr>";
+                            echo "<tr><td colspan='5' class='px-6 py-4 text-center text-sm text-gray-500'>No branches found.</td></tr>";
                         }
                         ?>
                     </tbody>
@@ -79,11 +85,12 @@ if (!$result) {
             </div>
         </div>
     </div>
-    
+
     <script>
         function updateBranch(id) {
             window.location.href = 'update_branch.php?id=' + id;
         }
+
         function deleteBranch(id) {
             if (confirm("Are you sure you want to delete this branch?")) {
                 window.location.href = 'delete_branch.php?id=' + id;
@@ -92,9 +99,8 @@ if (!$result) {
     </script>
 
 </body>
-
 </html>
 
 <?php
 $conn->close();
-?>
+?> 
