@@ -1,12 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "mysql";
-$dbname = "salesrecord";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once __DIR__ . '/db/config/db_config.php';
+$conn = getDBConnection();    // Get the database connection
+
+$error_message = ""; 
 $selectedBranch = isset($_GET['branch']) ? $_GET['branch'] : 'all';
 $entriesPerPage = isset($_GET['entries']) ? $_GET['entries'] : 10;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;

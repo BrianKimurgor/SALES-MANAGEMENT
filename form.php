@@ -1,18 +1,8 @@
 <?php
-// Database connection parameters
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "mysql";
-$dbname = "form_data";
+require_once __DIR__ . '/db/config/db_config.php';
+$conn = getDBConnection();    // Get the database connection
 
-// Create a database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$error_message = ""; 
 
 // Define a query to retrieve data (customize it based on your database structure)
 if (isset($_GET['id'])) {

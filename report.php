@@ -1,12 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "mysql";
-$dbname = "salesrecord";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once __DIR__ . '/db/config/db_config.php';
+$conn = getDBConnection();    // Get the database connection
+
+$error_message = ""; 
 
 $selectedDate = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d'); // Default to current date
 $entriesPerPage = isset($_GET['entries']) ? $_GET['entries'] : 20;

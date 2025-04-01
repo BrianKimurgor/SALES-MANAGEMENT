@@ -1,17 +1,8 @@
 <?php
-// Database connection
-$servername = "localhost";
-$username = "root";
-$password = "mysql";
-$dbname = "form_data";
+require_once __DIR__ . '/db/config/db_config.php';
+$conn = getDBConnection();    // Get the database connection
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$error_message = ""; 
 
 // Number of entries to display
 $rowsPerPage = isset($_GET['entries']) ? $_GET['entries'] : 10;
