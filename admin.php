@@ -35,26 +35,10 @@ if (!$result) {
         <h1 class="text-2xl font-bold">SALES RECORD SYSTEM</h1>
     </div>
     
-    <div class="flex">
-        <div class="w-1/5 bg-gray-800 text-white h-screen p-4">
-            <a href="login.php" class="block py-2">&#128100; LOGOUT</a>
-            <a href="admin.php" class="block py-2">Dashboard</a>
-            <div class="py-2">
-                <a href="#" class="block">Manage Users</a>
-                <div class="ml-4">
-                    <a href="register.php" class="block">Register User</a>
-                    <a href="view_users.php" class="block">View User</a>
-                </div>
-            </div>
-            <div class="py-2">
-                <a href="#" class="block">Manage Branches</a>
-                <div class="ml-4">
-                    <a href="branch.php" class="block">Register branch</a>
-                    <a href="view_branch.php" class="block">View Branches</a>
-                </div>
-            </div>
-        </div>
-        
+    <div class="flex w-full">
+        <?php include 'includes/sidebar.php'; ?>
+
+        <!-- Main Content -->
         <div class="w-4/5 p-8">
             <div class="mb-4">
                 <label for="date" class="font-bold text-green-600">Select Date:</label>

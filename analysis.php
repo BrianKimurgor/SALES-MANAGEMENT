@@ -19,192 +19,62 @@ if (!$result) {
 ?>
 
 <!DOCTYPE html>
-<html>
-<style>
-           header {
-  background-color: #333;
-  color: white;
-  padding: 0.5rem;
-}
-       .logout-button {
-  background-color: white;
-  color: white;
-  text-align: right;
-  margin-right:10px ;
-  margin-left:1250px ;
-  padding: 0.5rem;
-}
-     .home-button {
-  background-color: white;
-  color: white;
-  text-align: left;
-  padding-left: 10px;
-  padding: 0.5rem;
-}
-button{
-    font-weight: bold;
-}
-#header {
-            text-align: center;
-            padding: 10px;
-            background-color: green;
-            color: #fff;
-        }
-
-        #header img {
-            max-width: 100px;
-            vertical-align: middle;
-        }
-
-        h1 {
-            margin: 10px 0;
-        }
-
-        p {
-            margin: 10px 0;
-            text-align: center;
-
-            font-weight: bold;
-        }
-        table {
-    width: 80%;
-    border-collapse: collapse;
-    margin-top: 50px;
-    margin-left: 100px;
-}
-
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-button {
-    padding: 8px 12px;
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-select {
-    padding: 8px;
-}
-
-.pagination {
-    margin-top: 20px;
-    justify-content: center;
-    margin-right: 100;
-}
-
-.pagination a {
-    color: #008CBA;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-
-    border: 1px solid #ddd;
-}
-
-.pagination a.active {
-    background-color: #008CBA;
-    color: white;
-
-}
-
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
-    justify-content: center;
-}
-.branch{
-    font-weight: bold;
-    color: green;
-    margin-right:0px;
-}
-.entries{
-    font-weight: bold;
-    color: blue;
-    margin-left:20px;
-}
-    .logout-button a span {
-    margin-right: 5px; /* Adjust the spacing as needed */
-}    
-    </style>
-
-<header>
-    <button class="home-button"><a href="analysis.php">HOME</a></button>
-    <button class="logout-button">
-        <a href="login.php">
-            <span>&#128100;</span> <!-- Person icon HTML entity -->
-            LOGOUT
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sales Record Analysis</title>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
+        <a href="analysis.php" class="bg-white text-gray-800 px-4 py-2 rounded font-bold">HOME</a>
+        <a href="login.php" class="bg-white text-gray-800 px-4 py-2 rounded font-bold flex items-center">
+            <span class="mr-2">&#128100;</span> LOGOUT
         </a>
-    </button>
-</header>
-    <div id="header">
-        
-        <h1>SALES RECORD ANALYSIS ON BRANCHES</h1>
-
+    </header>
+    
+    <div class="text-center bg-green-600 text-white p-6">
+        <h1 class="text-2xl font-bold">SALES RECORD ANALYSIS ON BRANCHES</h1>
     </div>
-
-<body>
-    <label for="branch" class="branch">Select Branch:</label>
-    <select id="branch"class="branch" name="branch" onchange="changeBranch(this.value)">
-        <option value="all" <?php echo ($selectedBranch == 'all') ? 'selected' : ''; ?>>All Branches</option>
-        <option value="branch1" <?php echo ($selectedBranch == 'branch1') ? 'selected' : ''; ?>>Branch 1</option>
-        <option value="branch2" <?php echo ($selectedBranch == 'branch2') ? 'selected' : ''; ?>>Branch 2</option>
-    </select>
     
-
-    <table>
-        <tr>
-            
-             <th>BRANCH</th>
-            <th>QUANTITIES OF ITEM SOLD</th>
-            <th>TOTAL SALES</th>
-           
-        </tr>
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row['branch'] . "</td>";
-                 echo "<td>" . $row['total_quantity'] . "</td>";
-                echo "<td>" . $row['grand_total'] . "</td>";
-               
-               
-                echo "</tr>";
-            }
-        } else {
-            echo "<tr><td colspan='8'>No records found.</td></tr>";
-        }
-        ?>
+    <div class="p-6 max-w-4xl mx-auto">
+        <label for="branch" class="block font-bold text-green-600">Select Branch:</label>
+        <select id="branch" name="branch" class="mt-2 p-2 border rounded w-full" onchange="changeBranch(this.value)">
+            <option value="all" <?php echo ($selectedBranch == 'all') ? 'selected' : ''; ?>>All Branches</option>
+            <option value="branch1" <?php echo ($selectedBranch == 'branch1') ? 'selected' : ''; ?>>Branch 1</option>
+            <option value="branch2" <?php echo ($selectedBranch == 'branch2') ? 'selected' : ''; ?>>Branch 2</option>
+        </select>
         
-    </table>
-
+        <table class="mt-6 w-full border-collapse border border-gray-300 shadow-md bg-white">
+            <thead>
+                <tr class="bg-gray-200 text-gray-800">
+                    <th class="border p-2">BRANCH</th>
+                    <th class="border p-2">QUANTITIES OF ITEM SOLD</th>
+                    <th class="border p-2">TOTAL SALES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr class='border'>";
+                        echo "<td class='border p-2 text-center'>" . $row['branch'] . "</td>";
+                        echo "<td class='border p-2 text-center'>" . $row['total_quantity'] . "</td>";
+                        echo "<td class='border p-2 text-center'>" . $row['grand_total'] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='3' class='p-4 text-center text-red-500'>No records found.</td></tr>";
+                } ?>
+            </tbody>
+        </table>
+    </div>
+    
     <script>
-        function changeEntries(value) {
-            window.location.href = '?page=1&entries=' + value;
-        }
-        
         function changeBranch(value) {
-            window.location.href = '?page=1&entries=' + document.getElementById('entries').value + '&branch=' + value;
+            window.location.href = '?page=1&entries=' + document.getElementById('entries')?.value + '&branch=' + value;
         }
-
-        function changeEntries(value) {
-            window.location.href = '?page=1&entries=' + value + '&branch=' + document.getElementById('branch').value;
-        }
-    
     </script>
 </body>
-
 </html>
-
-<?php
-$conn->close();
-?>
+<?php $conn->close(); ?>

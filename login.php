@@ -35,126 +35,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 20px;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
-
-    input[type="submit"] {
-      display: block;
-      width:100%;
-      padding: 10px;
-      background-color: #4caf50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-
-    .form-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .form-container a {
-      text-decoration: none;
-      color: #333;
-      font-size: 12px;
-      transition: color 0.3s;
-    }
-
-    .form-container a:hover {
-      color: #777;
-    }
-
-    p.error-message {
-      color: red;
-      text-align: center;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    button.register-button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background-color: #4caf50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      text-align: center;
-      margin-top: 10px; /* Adjust as needed */
-    }
-
-    button.register-button:hover {
-      background-color: #45a049;
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <script>
-    function submitRegisterForm() {
-      document.getElementById("register-form").submit();
-    }
-  </script>
-  <h2>Login</h2>
-  <?php if (!empty($error_message)) : ?>
-    <p class="error-message"><?php echo $error_message; ?></p>
-  <?php endif; ?>
+<body class="bg-gray-100 font-sans flex items-center justify-center min-h-screen p-4">
 
-  <form action="" method="POST"> 
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
+  <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-center text-2xl font-semibold mb-6">Login</h2>
+    
+    <?php if (!empty($error_message)) : ?>
+      <p class="text-red-600 text-center font-semibold mb-4"><?php echo $error_message; ?></p>
+    <?php endif; ?>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+    <form action="" method="POST" class="space-y-4">
+      <div>
+        <label for="username" class="block text-gray-700 font-semibold">Username</label>
+        <input type="text" id="username" name="username" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+      </div>
+      
+      <div>
+        <label for="password" class="block text-gray-700 font-semibold">Password</label>
+        <input type="password" id="password" name="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+      </div>
 
-    <div class="form-container">
-        <input type="submit" value="LOGIN">
-        <!--p><button class="register-button"> <a href="register.php" class="register-link">REGISTER</a></button></p-->
-    </div>
-  </form>
+      <div class="flex justify-between items-center">
+        <button type="submit" class="w-full bg-teal-500 text-white py-2 rounded-md hover:bg-teal-600 transition duration-200">Login</button>
+      </div>
+    </form>
+
+    <!-- Optional Register Button (Uncomment if needed) -->
+    <!-- <div class="mt-4 text-center">
+      <button class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-200">
+        <a href="register.php" class="block">Register</a>
+      </button>
+    </div> -->
+  </div>
 </body>
 </html>

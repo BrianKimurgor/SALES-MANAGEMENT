@@ -127,7 +127,7 @@ class Cache
                 //throw new ImageException("Image type unknown", E_WARNING);
             //}
 
-            if ($type === "svg") {
+             ($type === "svg") {
                 $parser = xml_parser_create("utf-8");
                 xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, false);
                 xml_set_element_handler(

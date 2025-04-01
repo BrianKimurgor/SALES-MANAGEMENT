@@ -4,8 +4,6 @@ $conn = getDBConnection();    // Get the database connection
 
 $error_message = ""; 
 
-
-
 $sql = "SELECT id, itemcode,description,costprice,sellingprice,status FROM items WHERE status='available'";
 
 $result = $conn->query($sql);
@@ -13,284 +11,77 @@ $result = $conn->query($sql);
 if (!$result) {
     die("Error in SQL query: " . $conn->error);
 }
-
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <style>
-  
-#header {
-            text-align: center;
-            padding: 10px;
-            margin-left: 50;
-            background-color: green;
-            color: #fff;
-        }
-
-        #header img {
-            max-width: 100px;
-            vertical-align: middle;
-        }
-
-        h1 {
-            margin: 10px 0;
-        }
-
-        p {
-            margin: 10px 0;
-            text-align: center;
-
-            font-weight: bold;
-        }
-        table {
-    width: 80%;
-    border-collapse: collapse;
-    margin-top: 50px;
-    margin-left: 300px;
-}
-
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-button {
-    padding: 8px 12px;
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-select {
-    padding: 8px;
-    margin-left: 50px;
-}
-
-.pagination {
-    margin-top: 20px;
-    justify-content: center;
-    margin-right: 100;
-}
-
-.pagination a {
-    color: #008CBA;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-
-    border: 1px solid #ddd;
-}
-
-.pagination a.active {
-    background-color: #008CBA;
-    color: white;
-
-}
-
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
-    justify-content: center;
-}
-.branch {
-            font-weight: bold;
-            color: green;
-            margin-left: 250px;
-            margin-top: 50px;
-            font-size: 18px; /* Increased font size for the branch label */
-        }
-.entries{
-    font-weight: bold;
-    color: blue;
-    margin-left:20px;
-}
-.logout-button a span {
-    margin-right: 5px; /* Adjust the spacing as needed */
-}
-    .sidebar {
-            width: 200px;
-            height: 100%;
-            position: fixed;
-            background-color: #333;
-            padding-top: 20px;
-            padding-left: 10px;
-            color: white;
-        }
-
-        .sidebar a {
-            padding: 8px 8px 8px 16px;
-            text-decoration: none;
-            font-size: 18px;
-            color: white;
-            display: block;
-        }
-
-        .sidebar a:hover {
-            background-color: #555;
-        }
-
-        .content {
-            margin-left: 200px; /* Adjust the margin based on the sidebar width */
-            padding: 16px;
-        }
-        .submenu {
-    padding: 8px 8px 8px 16px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-    position: relative;
-}
-
-.submenu-content {
-    display: none;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    background-color: #333;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.submenu:hover .submenu-content {
-    display: block;
-}
-
-.submenu-content a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.submenu-content a:hover {
-    background-color: #555;
-}
-    .action-buttons button {
-            background-color: #008CBA;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            margin-right: 5px;
-        }
-
-        .action-buttons button.delete-btn {
-            background-color: #FF3333;
-        }   
-    </style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SALES MANAGEMENT SYSTEM</title>
-<header>
-    
-</header>
-    <div id="header">
-        
-        <h1>SALES RECORD SYSTEM</h1>
-       
-    </div>
-<body>
-     <div class="sidebar">
-    <a href="login.php">
-        <span>&#128100;</span> 
-        LOGOUT
-    </a>
-    <a href="admin.php">Dashboard</a>
-    <div class="submenu">
-        <a href="">Manage Users</a>
-        <div class="submenu-content">
-            <a href="register.php">Register User</a>
-            <a href="view_users.php">View User</a>
-        </div>
-    </div>
-    <div class="submenu">
-        <a href="">Manage Branches</a>
-        <div class="submenu-content">
-            <a href="branch.php">Register branch</a>
-            <a href="view_branch.php">View Branches</a>
-        </div>
-    </div>
-    <div class="submenu">
-        <a href="">Manage Items</a>
-        <div class="submenu-content">
-            <a href="item.php">Add items</a>
-            <a href="item_view.php">View Items</a>
-        </div>
-    </div>
-    <div class="submenu">
-        <a href="">STOCK</a>
-        <div class="submenu-content">
-            <a href="stock.php">Available stock</a>
-            <a href="soldstock.php">Sold stock</a>
-        </div>
-    </div>
-<div class="submenu">
-        <a href="">Sales</a>
-        <div class="submenu-content">
-            <a href="report.php">sales details</a>
-            <!--a href="item_view.php">View Items</a-->
-        </div>
-    </div>
-    
-</div>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-    
-    <table>
-        <tr>
-          
-            <th>ITEM CODE</th>
-             <th>DESCRIPTION</th>
-            <th>COST PRICE</th>
-            <th>SELLING PRICE</th>
-            
-            
-            <th>ACTION</th>
-        </tr>
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                
-                echo "<td>" . $row['itemcode'] . "</td>";
-                 echo "<td>" . $row['description'] . "</td>";
-                echo "<td>" . $row['costprice'] . "</td>";
-                echo "<td>" . $row['sellingprice'] . "</td>";
-               
-                echo "<td class='action-buttons'>
-                    <button class='update-btn' onclick='updateUser(" . $row['id'] . ")'>Update</button>
-                    <button class='delete-btn' onclick='deleteUser(" . $row['id'] . ")'>Delete</button>
-                  </td>";
-                echo "</tr>";
-            }
-        } else {
-            echo "<tr><td colspan='8'>No records found.</td></tr>";
-        }
-        ?>
-    </table>
-    
+<body class="bg-gray-100">
+    <header class="bg-green-500 text-white py-4">
+        <h1 class="text-2xl text-center">SALES RECORD SYSTEM</h1>
+    </header>
 
-   <script>
-    function updateUser(id) {
-        window.location.href = 'update_items.php?id=' + id;
-    }
+    <div class="flex w-full">
+        <?php include 'includes/sidebar.php'; ?>
 
-    function deleteUser(id) {
-        var confirmDelete = confirm("Are you sure you want to delete this item?");
-        if (confirmDelete) {
-            window.location.href = 'delete_item.php?id=' + id;
-        }
-    }
-</script>
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-6 py-3 text-left text-gray-600">ITEM CODE</th>
+                        <th class="px-6 py-3 text-left text-gray-600">DESCRIPTION</th>
+                        <th class="px-6 py-3 text-left text-gray-600">COST PRICE</th>
+                        <th class="px-6 py-3 text-left text-gray-600">SELLING PRICE</th>
+                        <th class="px-6 py-3 text-left text-gray-600">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr class='border-b'>";
+                            echo "<td class='px-6 py-3'>" . $row['itemcode'] . "</td>";
+                            echo "<td class='px-6 py-3'>" . $row['description'] . "</td>";
+                            echo "<td class='px-6 py-3'>" . $row['costprice'] . "</td>";
+                            echo "<td class='px-6 py-3'>" . $row['sellingprice'] . "</td>";
+                            echo "<td class='px-6 py-3'>
+                                    <button class='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600' onclick='updateUser(" . $row['id'] . ")'>Update</button>
+                                    <button class='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600' onclick='deleteUser(" . $row['id'] . ")'>Delete</button>
+                                  </td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='5' class='px-6 py-3 text-center text-gray-500'>No records found.</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+            <div class="mt-6">
+                <script>
+                    function updateUser(id) {
+                        window.location.href = 'update_items.php?id=' + id;
+                    }
+
+                    function deleteUser(id) {
+                        var confirmDelete = confirm("Are you sure you want to delete this item?");
+                        if (confirmDelete) {
+                            window.location.href = 'delete_item.php?id=' + id;
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

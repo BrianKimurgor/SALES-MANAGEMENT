@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "UPDATE formdata SET itemcode = '$newitemcode', item = '$newdescription', quantity = '$newquantity', sellingprice = '$newsellingprice', totalcost=' $newtotal' WHERE id = $itemid";
 
     if ($conn->query($sql) === TRUE) {
-        $successMessage = "list updated successfully.";
+        $successMessage = "List updated successfully.";
     } else {
         echo "Error updating list: " . $conn->error;
     }
@@ -41,76 +41,45 @@ $row = $result->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update list</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 12px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background-color: #008CBA;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #006799;
-        }
-    </style>
+    <title>Update List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <form method="post" action="">
-        <h2>Update list</h2>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <form method="post" action="" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Update List</h2>
+
         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
 
-        <label for="newitemcode">New Item code:</label>
-        <input type="text" name="newitemcode" value="<?php echo $row['itemcode']; ?>" required>
+        <div class="mb-4">
+            <label for="newitemcode" class="block text-gray-700 text-sm font-medium mb-2">New Item Code:</label>
+            <input type="text" name="newitemcode" value="<?php echo $row['itemcode']; ?>" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
 
-        <label for="newdescription">New Description:</label>
-        <input type="text" name="newdescription" value="<?php echo $row['item']; ?>" required>
+        <div class="mb-4">
+            <label for="newdescription" class="block text-gray-700 text-sm font-medium mb-2">New Description:</label>
+            <input type="text" name="newdescription" value="<?php echo $row['item']; ?>" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
 
-        <label for="newquantity">New quantity:</label>
-        <input type="text" name="newquantity" value="<?php echo $row['quantity']; ?>" required>
-        <label for="newsellingprice">New Selling price:</label>
-        <input type="text" name="newsellingprice" value="<?php echo $row['sellingprice']; ?>" required>
-<label for="newtotal">New total cost:</label>
-        <input type="text" name="newtotal" value="<?php echo $row['totalcost']; ?>" required>
-        <input type="submit" value="Update list">
+        <div class="mb-4">
+            <label for="newquantity" class="block text-gray-700 text-sm font-medium mb-2">New Quantity:</label>
+            <input type="text" name="newquantity" value="<?php echo $row['quantity']; ?>" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="mb-4">
+            <label for="newsellingprice" class="block text-gray-700 text-sm font-medium mb-2">New Selling Price:</label>
+            <input type="text" name="newsellingprice" value="<?php echo $row['sellingprice']; ?>" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="mb-6">
+            <label for="newtotal" class="block text-gray-700 text-sm font-medium mb-2">New Total Cost:</label>
+            <input type="text" name="newtotal" value="<?php echo $row['totalcost']; ?>" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="mb-6">
+            <input type="submit" value="Update List" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 cursor-pointer">
+        </div>
     </form>
 
     <?php
