@@ -25,12 +25,7 @@ if (!$result) {
 </head>
 
 <body class="bg-gray-100">
-
-    <header>
-        <div id="header" class="bg-green-600 text-white p-4 text-center">
-            <h1 class="text-2xl font-bold">SALES RECORD SYSTEM</h1>
-        </div>
-    </header>
+    <?php include 'includes/header.php'; ?>
 
     <div class="flex w-full">
         <?php include 'includes/sidebar.php'; ?>

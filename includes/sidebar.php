@@ -1,7 +1,6 @@
 <!-- Sidebar -->
 <nav class="w-64 min-h-screen bg-gray-800 text-white p-4">
     <ul>
-        <li class="py-2"><a href="login.php" class="block hover:bg-gray-700 p-2 rounded">&#128100; LOGOUT</a></li>
         <li class="py-2"><a href="admin.php" class="block hover:bg-gray-700 p-2 rounded">Dashboard</a></li>
         <li class="py-2 group">
             <a href="#" class="block hover:bg-gray-700 p-2 rounded">Manage Users</a>

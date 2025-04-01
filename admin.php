@@ -24,16 +24,12 @@ if (!$result) {
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>SALES MANAGEMENT SYSTEM</title>
 </head>
-
 <body class="bg-gray-100">
-    <div class="bg-green-600 text-white text-center py-4">
-        <h1 class="text-2xl font-bold">SALES RECORD SYSTEM</h1>
-    </div>
+    <?php include 'includes/header.php'; ?>
     
     <div class="flex w-full">
         <?php include 'includes/sidebar.php'; ?>

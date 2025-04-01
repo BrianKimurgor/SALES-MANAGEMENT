@@ -24,16 +24,13 @@ if (!$result) {
 </head>
 
 <body class="bg-gray-100">
+    <?php include 'includes/header.php'; ?>
 
     <div class="flex w-full">
         <?php include 'includes/sidebar.php'; ?>
 
         <!-- Main Content -->
         <div class="content ml-64 p-8">
-            <header class="text-center mb-6 bg-green-600 text-white py-4">
-                <h1 class="text-3xl font-semibold">SALES RECORD SYSTEM</h1>
-            </header>
-
             <!-- Branch Table -->
             <div class="overflow-x-auto bg-white shadow-md rounded-lg">
                 <table class="min-w-full table-auto border-collapse">

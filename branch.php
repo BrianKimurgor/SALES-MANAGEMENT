@@ -5,10 +5,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-  <!-- Header -->
-  <div class="bg-green-600 text-white py-4 text-center">
-    <h1 class="text-2xl font-bold">SALES RECORD SYSTEM</h1>
-  </div>
+  <?php include 'includes/header.php'; ?>
 
   <div class="flex w-full">
     <?php include 'includes/sidebar.php'; ?>

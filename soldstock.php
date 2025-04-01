@@ -23,15 +23,13 @@ if (!$result) {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
+    <?php include 'includes/header.php'; ?>
+
     <div class="flex w-full">
         <?php include 'includes/sidebar.php'; ?>
 
         <!-- Main Content -->
         <div class="flex-1 p-8">
-            <div class="bg-green-600 text-white text-center py-4">
-                <h1 class="text-3xl">SALES RECORD SYSTEM</h1>
-            </div>
-
             <div class="mt-8">
                 <table class="min-w-full table-auto bg-white border-collapse border border-gray-300">
                     <thead>

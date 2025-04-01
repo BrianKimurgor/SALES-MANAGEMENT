@@ -51,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Register User</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col items-center">
-    <div class="w-full bg-green-600 text-white py-4 text-center text-2xl font-bold">SALES RECORD SYSTEM</div>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <?php include 'includes/header.php'; ?>
     
     <div class="flex w-full">
         <?php include 'includes/sidebar.php'; ?>
